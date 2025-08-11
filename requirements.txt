@@ -1,0 +1,103 @@
+# HIGHLOAD MCP DEPENDENCIES
+# COMPRESS: Minimal dependencies for maximum performance (Principle #1)
+# HARDWARE OPTIMIZED: CPU/memory efficient packages (Principle #2)  
+# DEBLOAT: Only essential packages included (Principle #5)
+
+# CORE PERFORMANCE MONITORING (Principle #2: Hardware optimization)
+psutil>=5.9.0  # System resource monitoring
+memory-profiler>=0.61.0  # RAM usage tracking
+
+# SPEED TESTING & BENCHMARKING (Principle #8: Test speed)
+pytest>=7.4.0  # Testing framework with speed optimization
+pytest-benchmark>=4.0.0  # Performance benchmarking
+cProfile  # Built-in profiler - no version needed
+
+# COMPRESSION & OPTIMIZATION (Principle #1: Compress)
+lz4>=4.3.0  # Ultra-fast compression (MUTATE: can replace zlib)
+zstandard>=0.22.0  # High-ratio compression
+blosc2>=2.5.0  # Extremely fast compression for numerical data
+
+# REGEXP ENGINE (Principle #9: RegExp)
+regex>=2023.8.8  # Advanced regex with better performance than re
+hyperscan>=0.7.0  # Intel's ultra-fast regex engine (Principle #6: Assembly/C)
+
+# MUTABLE RUNTIME (Principle #7: Mutate)
+importlib-util  # Built-in - runtime module loading
+types-setuptools>=68.0.0  # Type hints for dynamic imports
+
+# HARDWARE-SPECIFIC OPTIMIZATIONS (Principle #2: Hardware consumption)
+numpy>=1.24.0  # SIMD-optimized numerical operations
+numba>=0.58.0  # JIT compilation for speed (MUTATE: compiles to machine code)
+cython>=3.0.0  # Python to C compiler for critical paths
+
+# PATCH MANAGEMENT (Principle #10: Search latest patches)
+GitPython>=3.1.0  # Git integration for patch retrieval
+requests>=2.31.0  # HTTP requests for patch downloads
+packaging>=23.0  # Version comparison for patch compatibility
+
+# ASSEMBLY/C/ZIG INTEGRATION (Principle #6: Implement Assembly, Zig, C)
+cffi>=1.15.0  # C Foreign Function Interface
+pybind11>=2.11.0  # Python C++ bindings (for C integration)
+ctypes  # Built-in - no version needed
+
+# LOGIC UNDERSTANDABILITY (Principle #3: Improve logic understandability)
+typing-extensions>=4.7.0  # Enhanced type hints
+dataclasses  # Built-in - no version needed
+attrs>=23.1.0  # Clean class definitions
+
+# RAM-TIME TRADEOFF UTILITIES (Principle #4: Trade RAM for TIME)
+functools  # Built-in - caching and memoization
+weakref  # Built-in - memory-efficient references
+gc  # Built-in - garbage collection control
+
+# DEVELOPMENT & TESTING OPTIMIZATIONS
+# DEBLOAT: Only essential dev dependencies (Principle #5)
+black>=23.7.0  # Code formatting (compressed output)
+ruff>=0.0.285  # Ultra-fast linting (10-100x faster than flake8)
+mypy>=1.5.0  # Static type checking for understandability
+
+# OPTIONAL HIGH-PERFORMANCE ADDITIONS
+# COMMENT OUT if not needed to maintain DEBLOAT principle
+# scikit-learn>=1.3.0  # Machine learning with optimized algorithms
+# pandas>=2.1.0  # Data manipulation with C-optimized backend  
+# uvloop>=0.17.0  # Ultra-fast asyncio event loop replacement
+
+# PLATFORM-SPECIFIC OPTIMIZATIONS (uncomment as needed)
+# Darwin/macOS optimizations (Principle #2)
+# pyobjc>=9.2 ; sys_platform == "darwin"  # macOS system integration
+
+# Linux optimizations  
+# python-prctl>=1.8.0 ; sys_platform == "linux"  # Process control
+
+# Windows optimizations
+# pywin32>=306 ; sys_platform == "win32"  # Windows API access
+
+# MUTATION-READY PACKAGES (Principle #7)
+# These can be dynamically loaded/unloaded at runtime
+# ast  # Built-in - Abstract Syntax Tree manipulation
+# inspect  # Built-in - Runtime introspection
+# dis  # Built-in - Bytecode analysis for mutations
+
+# CRITICAL PERFORMANCE NOTES:
+# 1. COMPRESS (Principle #1): Use lz4 over zlib for 5x speed improvement
+# 2. HARDWARE (Principle #2): psutil for system monitoring, numpy for SIMD
+# 3. UNDERSTANDABLE (Principle #3): typing-extensions for clear interfaces  
+# 4. RAM-TIME (Principle #4): functools.lru_cache for trading memory for speed
+# 5. DEBLOAT (Principle #5): Minimal set - avoid heavyweight frameworks
+# 6. ASSEMBLY (Principle #6): cffi/pybind11 for C integration, numba for JIT
+# 7. MUTATE (Principle #7): importlib-util for runtime module replacement
+# 8. SPEED TEST (Principle #8): pytest-benchmark for performance validation
+# 9. REGEXP (Principle #9): regex/hyperscan for pattern matching optimization
+# 10. PATCHES (Principle #10): GitPython/requests for automated patch retrieval
+
+# INSTALLATION PRIORITY ORDER (for COMPRESS principle):
+# 1. Core performance: psutil, pytest
+# 2. Optimization: lz4, numba, numpy  
+# 3. Integration: cffi, pybind11
+# 4. Development: black, ruff, mypy
+# 5. Advanced: hyperscan (if CPU supports), regex
+
+# HARDWARE REQUIREMENTS VALIDATION:
+# Run: python -c "import psutil; print(f'CPU: {psutil.cpu_count()}, RAM: {psutil.virtual_memory().total//1024**3}GB')"
+# Minimum: 4 cores, 8GB RAM for optimal performance
+# Recommended: 8+ cores, 16GB+ RAM for MUTATE + SPEED TEST operations
