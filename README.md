@@ -439,6 +439,7 @@ Here's the recommended project structure for a Python HighLoad MCP Server optimi
 python-highload-mcp/
 ├── .github/
 │   └── workflows/
+│       ├── ci-cd-wrangler.yml   # Wrangler-integrated CI/CD with edge deployment
 │       ├── ci-optimized.yml     # Optimized CI pipeline with parallel execution
 │       ├── performance.yml     # CI/CD performance benchmarking
 │       ├── legacy-migration.yml # Legacy project migration pipeline

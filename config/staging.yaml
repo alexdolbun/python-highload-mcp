@@ -1,0 +1,146 @@
+# Staging Environment Configuration
+# Python HighLoad MCP Server - CI/CD Pipeline Optimization
+
+environment: staging
+debug: false
+log_level: INFO
+
+# Cloudflare Workers Configuration
+cloudflare:
+  environment: staging
+  subdomain: "python-highload-mcp-staging"
+  timeout: 40000    # 40 seconds
+  memory_limit: 128 # MB
+  cpu_limit: 50000  # milliseconds
+
+# Performance Settings (Production-Like)
+performance:
+  enable_caching: true
+  cache_ttl: 1800   # 30 minutes
+  parallel_execution: true
+  max_workers: 8    # Mid-range for staging
+  enable_profiling: true  # Enable for testing
+  
+# Optimization Features
+optimizations:
+  compression:
+    enabled: true
+    algorithms: ["lz4", "zstandard"]
+    level: "high"  # High compression
+  
+  memory:
+    garbage_collection: "balanced"
+    pool_size: 500
+    enable_monitoring: true
+    
+  networking:
+    connection_pooling: true
+    keep_alive: true
+    timeout: 20
+    retries: 3
+    connection_limit: 500
+
+# CI/CD Pipeline Settings  
+cicd:
+  parallel_tests: true
+  test_workers: 8
+  coverage_threshold: 85  # High for staging
+  benchmark_enabled: true
+  security_scanning: true  # Full security testing
+  
+  build:
+    optimization_level: "high"
+    include_debug_symbols: false
+    enable_hot_reload: false
+    minification: true
+    
+# Database/Storage (Staging)
+storage:
+  kv_namespace: "mcp-cache-staging"
+  r2_bucket: "python-highload-artifacts-staging"
+  durable_objects: "MCPState-staging"
+  
+# Monitoring & Observability
+monitoring:
+  enabled: true
+  metrics_collection: true
+  error_tracking: true
+  performance_monitoring: true
+  log_sampling_rate: 0.1  # 10% sampling
+  alerting:
+    enabled: true
+    error_threshold: 10
+    response_time_threshold: 200  # ms
+    
+# Security Settings (Production-Like)
+security:
+  api_rate_limiting: true
+  rate_limit: 500  # requests per minute
+  ip_whitelist: []
+  require_authentication: false
+  enable_cors: true  # More relaxed than prod
+  security_headers: true
+  
+# Load Testing Configuration
+load_testing:
+  enabled: true
+  max_concurrent_users: 100
+  test_duration: 300  # 5 minutes
+  ramp_up_time: 60   # 1 minute
+  
+# Performance Testing
+performance_testing:
+  benchmark_suites:
+    - "compression_algorithms"
+    - "parallel_processing"
+    - "memory_optimization"
+    - "network_performance"
+  
+  thresholds:
+    response_time_p95: 100  # ms
+    response_time_p99: 200  # ms
+    throughput_min: 1000    # requests/second
+    error_rate_max: 1       # percent
+  
+# Auto-scaling Configuration (Testing)
+scaling:
+  enabled: true
+  min_instances: 1
+  max_instances: 10
+  cpu_threshold: 60       # percent
+  memory_threshold: 70    # percent
+  scale_up_cooldown: 180  # seconds
+  scale_down_cooldown: 300 # seconds
+  
+# Feature Flags (Pre-Production Testing)
+features:
+  experimental_optimizations: true
+  new_compression_algorithms: true
+  advanced_caching: true
+  ml_performance_prediction: true
+  
+# Testing & QA Configuration
+testing:
+  integration_tests: true
+  performance_tests: true
+  security_tests: true
+  load_tests: true
+  chaos_engineering: false  # Disabled for now
+  
+  test_data:
+    synthetic_load: true
+    realistic_scenarios: true
+    edge_cases: true
+    
+# Deployment Configuration
+deployment:
+  blue_green: true
+  canary_enabled: false
+  rollback_enabled: true
+  health_checks: true
+  
+# Notifications
+notifications:
+  slack_webhook: ""  # Configure if needed
+  email_alerts: true
+  deployment_notifications: true

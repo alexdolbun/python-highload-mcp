@@ -1,0 +1,89 @@
+# Development Environment Configuration
+# Python HighLoad MCP Server - CI/CD Pipeline Optimization
+
+environment: development
+debug: true
+log_level: DEBUG
+
+# Cloudflare Workers Configuration
+cloudflare:
+  environment: development
+  subdomain: "python-highload-mcp-dev"
+  timeout: 30000  # 30 seconds
+  memory_limit: 128  # MB
+  cpu_limit: 50000   # milliseconds
+
+# Performance Settings (Relaxed for Development)
+performance:
+  enable_caching: true
+  cache_ttl: 300  # 5 minutes (shorter for dev)
+  parallel_execution: true
+  max_workers: 4
+  enable_profiling: true
+  
+# Optimization Features
+optimizations:
+  compression:
+    enabled: true
+    algorithms: ["lz4", "zstandard"]
+    level: "fast"  # Fast compression for dev
+  
+  memory:
+    garbage_collection: "aggressive"
+    pool_size: 100
+    enable_monitoring: true
+    
+  networking:
+    connection_pooling: true
+    keep_alive: true
+    timeout: 10
+    retries: 3
+
+# CI/CD Pipeline Settings  
+cicd:
+  parallel_tests: true
+  test_workers: "auto"
+  coverage_threshold: 70  # Lower for dev
+  benchmark_enabled: true
+  security_scanning: false  # Disable for faster dev cycles
+  
+  build:
+    optimization_level: "debug"
+    include_debug_symbols: true
+    enable_hot_reload: true
+    
+# Database/Storage (Development)
+storage:
+  kv_namespace: "mcp-cache-dev"
+  r2_bucket: "python-highload-artifacts-dev"
+  durable_objects: "MCPState-dev"
+  
+# Monitoring & Observability
+monitoring:
+  enabled: true
+  metrics_collection: true
+  error_tracking: true
+  performance_monitoring: true
+  log_sampling_rate: 1.0  # 100% for dev
+  
+# Development-Specific Features
+development:
+  hot_reload: true
+  debug_endpoints: true
+  mock_external_services: true
+  verbose_logging: true
+  development_cors: true
+  
+# Security Settings (Relaxed for Development)
+security:
+  api_rate_limiting: false
+  ip_whitelist: []
+  require_authentication: false
+  enable_cors: true
+  
+# Feature Flags
+features:
+  experimental_optimizations: true
+  new_compression_algorithms: true
+  advanced_caching: true
+  ml_performance_prediction: false

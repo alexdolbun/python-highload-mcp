@@ -1,0 +1,122 @@
+# Production Environment Configuration  
+# Python HighLoad MCP Server - CI/CD Pipeline Optimization
+
+environment: production
+debug: false
+log_level: WARN
+
+# Cloudflare Workers Configuration
+cloudflare:
+  environment: production
+  subdomain: "python-highload-mcp-prod"
+  timeout: 50000    # 50 seconds
+  memory_limit: 128 # MB (optimized)
+  cpu_limit: 50000  # milliseconds
+
+# Performance Settings (Maximum Optimization)
+performance:
+  enable_caching: true
+  cache_ttl: 3600   # 1 hour
+  parallel_execution: true
+  max_workers: 16   # Higher for production
+  enable_profiling: false  # Disable in prod for performance
+  
+# Optimization Features (Production-Tuned)
+optimizations:
+  compression:
+    enabled: true
+    algorithms: ["lz4", "zstandard", "blosc2"]
+    level: "maximum"  # Maximum compression
+  
+  memory:
+    garbage_collection: "optimized"
+    pool_size: 1000   # Larger pool
+    enable_monitoring: false  # Disable for performance
+    
+  networking:
+    connection_pooling: true
+    keep_alive: true
+    timeout: 30
+    retries: 5
+    connection_limit: 1000
+
+# CI/CD Pipeline Settings (Production-Ready)
+cicd:
+  parallel_tests: true
+  test_workers: 16
+  coverage_threshold: 90  # Higher for production
+  benchmark_enabled: true
+  security_scanning: true
+  
+  build:
+    optimization_level: "maximum"
+    include_debug_symbols: false
+    enable_hot_reload: false
+    minification: true
+    
+# Database/Storage (Production)
+storage:
+  kv_namespace: "mcp-cache-prod"
+  r2_bucket: "python-highload-artifacts"
+  durable_objects: "MCPState"
+  
+# Monitoring & Observability (Production-Grade)
+monitoring:
+  enabled: true
+  metrics_collection: true
+  error_tracking: true
+  performance_monitoring: true
+  log_sampling_rate: 0.01  # 1% sampling for performance
+  alerting:
+    enabled: true
+    error_threshold: 5
+    response_time_threshold: 100  # ms
+    
+# Security Settings (Production-Hardened)
+security:
+  api_rate_limiting: true
+  rate_limit: 1000  # requests per minute
+  ip_whitelist: []  # Configure as needed
+  require_authentication: false  # Configure based on requirements
+  enable_cors: false
+  security_headers: true
+  
+# High-Load Optimizations
+high_load:
+  enable_request_batching: true
+  batch_size: 100
+  enable_connection_multiplexing: true
+  tcp_nodelay: true
+  tcp_keepalive: true
+  
+# Performance Thresholds & SLA
+sla:
+  response_time_p95: 50   # ms
+  response_time_p99: 100  # ms
+  availability: 99.9      # percent
+  error_rate: 0.1         # percent
+  
+# Auto-scaling Configuration
+scaling:
+  enabled: true
+  min_instances: 2
+  max_instances: 100
+  cpu_threshold: 70       # percent
+  memory_threshold: 80    # percent
+  scale_up_cooldown: 300  # seconds
+  scale_down_cooldown: 600 # seconds
+  
+# Feature Flags (Production-Stable)
+features:
+  experimental_optimizations: false
+  new_compression_algorithms: true
+  advanced_caching: true
+  ml_performance_prediction: true
+  
+# Disaster Recovery
+disaster_recovery:
+  backup_enabled: true
+  backup_frequency: "hourly"
+  retention_days: 30
+  multi_region: true
+  failover_enabled: true
